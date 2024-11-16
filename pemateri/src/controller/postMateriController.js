@@ -24,7 +24,7 @@ const getFormattedDate = () => {
 
 exports.postMateri = async (req, res) => {
   try {
-    const { title, description, pemateriId } = req.body; // Pemateri ID dikirim dari body
+    const { title, description,content, pemateriId } = req.body; // Pemateri ID dikirim dari body
     const createdAt = getFormattedDate();
 
     // Validasi input
@@ -41,7 +41,7 @@ exports.postMateri = async (req, res) => {
     }
 
     const insertQuery =
-      "INSERT INTO materi (title, description, pmteri_id, createdAt) VALUES (?, ?, ?, ?)";
+      "INSERT INTO materi (title, description, content,pmteri_id, createdAt) VALUES (?, ?,?, ?, ?)";
     const values = [title, description, pemateriId, createdAt];
 
     const [result] = await db.query(insertQuery, values);

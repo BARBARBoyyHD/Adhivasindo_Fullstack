@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 
 // GET METHOD
 app.get("/api/logout/student", require("./src/route/logoutRoute"));
+app.get("/api/searchMateri",require("./src/route/searchMateriRoute"))
 
 // POST METHOD
 app.post("/api/register/student", require("./src/route/registerRoute"));

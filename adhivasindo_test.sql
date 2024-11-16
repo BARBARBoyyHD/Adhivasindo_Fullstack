@@ -26,11 +26,12 @@ CREATE TABLE `pemateri` (
 );
 
 CREATE TABLE `materi` (
-  `materi_id` integer PRIMARY KEY,
-  `title` varchar(100),
-  `description` text,
-  `createdAt` date,
-  `pmteri_id` integer
+  `materi_id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `title` VARCHAR(100),
+  `description` TEXT,
+  `createdAt` DATE,
+  `content` LONGTEXT,
+  `pmteri_id` INTEGER,
 );
 
 CREATE TABLE `submissions` (
