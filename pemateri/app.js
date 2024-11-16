@@ -22,7 +22,7 @@ app.get("/api/logout/pemateri",require("./src/route/logoutRoute"))
 // POST METHOD
 app.post("/api/register/pemateri",require("./src/route/registerRoute"))
 app.post("/api/login/pemateri",require("./src/route/loginRoute"))
-
+app.post("/api/PostMateri",require("./src/route/postMateriRoute"))
 
 app.listen(port,()=>{
     console.log(`http://localhost:${port}`);
