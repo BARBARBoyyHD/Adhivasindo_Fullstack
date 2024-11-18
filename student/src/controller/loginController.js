@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 // Generate access token
 const generateAccessToken = (userRole) => {
-    return jwt.sign({ userRole }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
+    return jwt.sign({ userRole }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "24h" });
 };
 
 // Generate refresh token
@@ -55,19 +55,19 @@ exports.login = async (req, res) => {
             .cookie("accessToken", accessToken, {
                 httpOnly: true,
                 sameSite: "strict",
-                secure:true, // Secure only in production
-                maxAge: 30 * 60 * 1000, // 30 minutes
+                secure:false, // Secure only in production
+                maxAge: 50 * 80 * 1000, // 30 minutes
             })
             .cookie("refreshToken", refreshToken, {
                 httpOnly: true,
                 sameSite: "strict",
-                secure:true, // Secure only in production
+                secure:false, // Secure only in production
                 maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             })
             .cookie("role_id", user.role_id, {
                 httpOnly: true,
                 sameSite: "strict",
-                secure:true, // Secure only in production
+                secure:false, // Secure only in production
                 maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             })
             .json({

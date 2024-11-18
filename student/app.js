@@ -10,8 +10,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express());
 app.use(express.json());
-app.use(cors());
-app.set("trust proxy", true);
+// app.use(cors({
+//   origin: "http://localhost:3000",
+//   credentials: true
+// }));
+// app.set("trust proxy", true);
 
 app.get("/", (req, res) => {
   console.log("this is student");

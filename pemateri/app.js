@@ -20,7 +20,7 @@ app.get("/",(req,res)=>{
 // GET METHOD
 app.get("/api/logout/pemateri",require("./src/route/logoutRoute"))
 app.get("/api/Materi/:materi_id",require("./src/route/getSingleMateriRoute"))
-app.get("/api/allMateri",require("./src/route/getAllMateriRoute"))
+
 
 // POST METHOD
 app.post("/api/register/pemateri",require("./src/route/registerRoute"))

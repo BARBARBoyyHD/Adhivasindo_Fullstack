@@ -24,15 +24,16 @@ const getFormattedDate = () => {
 
 exports.postMateri = async (req, res) => {
   try {
-    const { title, description,content, pemateriId } = req.body; // Pemateri ID dikirim dari body
+    const { title, description, content, pemateriId } = req.body; // Pemateri ID sent from body
     const createdAt = getFormattedDate();
 
-    // Validasi input
-    if (!title || !description || !pemateriId) {
+    // Input validation
+    if (!title || !description || !content || !pemateriId) {
       return res.status(400).json({
         message: "Please fill all the fields",
       });
     }
+
     // Check if pemateri exists
     const findPemateriQuery = "SELECT * FROM pemateri WHERE pmteri_id = ?";
     const [pemateri] = await db.query(findPemateriQuery, [pemateriId]);
@@ -40,19 +41,18 @@ exports.postMateri = async (req, res) => {
       return res.status(404).json({ message: "Pemateri not found" });
     }
 
+    // Insert the materi
     const insertQuery =
-      "INSERT INTO materi (title, description, content,pmteri_id, createdAt) VALUES (?, ?,?, ?, ?)";
-    const values = [title, description, pemateriId, createdAt];
+      "INSERT INTO materi (title, description, content, pmteri_id, createdAt) VALUES (?, ?, ?, ?, ?)";
+    const values = [title, description, content, pemateriId, createdAt];
 
     const [result] = await db.query(insertQuery, values);
 
-    // Berhasil
-    return res
-      .status(201)
-      .json({
-        message: "Materi created successfully",
-        materiId: result.insertId,
-      });
+    // Success
+    return res.status(201).json({
+      message: "Materi created successfully",
+      materiId: result.insertId,
+    });
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ message: "Internal Server Error" });
